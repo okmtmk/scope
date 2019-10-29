@@ -1,4 +1,4 @@
-namespace Scripts.src.examples
+namespace src.examples
 {
     public class HelloWorld
     {

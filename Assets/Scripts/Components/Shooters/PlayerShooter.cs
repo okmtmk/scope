@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scripts.Components.Shooters
+namespace Components.Shooters
 {
     public class PlayerShooter : MonoBehaviour
     {
@@ -13,6 +13,7 @@ namespace Scripts.Components.Shooters
         // Update is called once per frame
         void Update()
         {
+            
         }
     }
 }
