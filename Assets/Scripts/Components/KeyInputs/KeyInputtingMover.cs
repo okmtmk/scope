@@ -22,15 +22,12 @@ namespace Components.KeyInputs
         private void Update()
         {
             var direction = MovingKey.GetMovingDirection();
-            Debug.Log($"{_position2.X} : {_position2.Y}");
 
             if (!(direction.x == 0 && direction.y == 0))
             {
-                _position2.Move(direction, 1, _stopwatch.ElapsedMilliseconds);
+                _position2.Move(direction, 5, _stopwatch.ElapsedMilliseconds);
                 _stopwatch.Restart();
-
-                Debug.Log($"{_position2.X} : {_position2.Y}");
-
+                
                 gameObject.transform.position = new Vector3(_position2.X, _position2.Y, 0);
             }
             else

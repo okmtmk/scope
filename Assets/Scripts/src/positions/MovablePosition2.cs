@@ -28,8 +28,8 @@ namespace src.positions
         public MovablePosition2 Move(float x, float y, float speed, long elapsedMilliSeconds)
         {
             var radius = Math.Atan2(y, x);
-            X += (float) Math.Cos(radius) * speed * elapsedMilliSeconds / 100;
-            Y += (float) Math.Sin(radius) * speed * elapsedMilliSeconds / 100;
+            X += (float) Math.Cos(radius) * speed * elapsedMilliSeconds / 1000;
+            Y += (float) Math.Sin(radius) * speed * elapsedMilliSeconds / 1000;
             return this;
         }
 
