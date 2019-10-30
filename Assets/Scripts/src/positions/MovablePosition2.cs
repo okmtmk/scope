@@ -7,6 +7,7 @@ namespace src.positions
     public class MovablePosition2 : Position2
     {
         protected Vector2 _vector2;
+        protected float _movableDistance;
 
         public new float X
         {
@@ -20,9 +21,10 @@ namespace src.positions
             set => _vector2.y = value;
         }
 
-        public MovablePosition2(Vector2 position) : base(position.x, position.y)
+        public MovablePosition2(Vector2 position, float movableDistance) : base(position.x, position.y)
         {
             _vector2 = position;
+            _movableDistance = movableDistance;
         }
 
         public MovablePosition2 Move(float x, float y, float speed, long elapsedMilliSeconds)
@@ -30,6 +32,9 @@ namespace src.positions
             var radius = Math.Atan2(y, x);
             X += (float) Math.Cos(radius) * speed * elapsedMilliSeconds / 1000;
             Y += (float) Math.Sin(radius) * speed * elapsedMilliSeconds / 1000;
+
+            FitMovableArea();
+
             return this;
         }
 
@@ -37,6 +42,17 @@ namespace src.positions
         {
             Move(vector.x, vector.y, speed, elapsedMilliSeconds);
             return this;
+        }
+
+        private void FitMovableArea()
+        {
+            var distance = Math.Sqrt(X * X + Y * Y);
+            if (distance > _movableDistance)
+            {
+                var radius = Math.Atan2(Y, X);
+                X = (float) Math.Cos(radius) * _movableDistance;
+                Y = (float) Math.Sin(radius) * _movableDistance;
+            }
         }
     }
 }

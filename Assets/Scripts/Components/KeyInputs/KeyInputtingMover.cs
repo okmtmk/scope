@@ -15,7 +15,7 @@ namespace Components.KeyInputs
 
         private void Start()
         {
-            _position2 = new MovablePosition2(gameObject.transform.position);
+            _position2 = new MovablePosition2(gameObject.transform.position,15);
             _stopwatch = new Stopwatch();
         }
 
@@ -25,7 +25,7 @@ namespace Components.KeyInputs
 
             if (!(direction.x == 0 && direction.y == 0))
             {
-                _position2.Move(direction, 5, _stopwatch.ElapsedMilliseconds);
+                _position2.Move(direction, 15, _stopwatch.ElapsedMilliseconds);
                 _stopwatch.Restart();
                 
                 gameObject.transform.position = new Vector3(_position2.X, _position2.Y, 0);
