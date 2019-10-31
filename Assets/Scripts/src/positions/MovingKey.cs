@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 namespace src.positions
@@ -17,8 +14,8 @@ namespace src.positions
 
         public static readonly MovingKey Forward = new MovingKey(KeyCode.W, 0, 1);
         public static readonly MovingKey Right = new MovingKey(KeyCode.D, 1, 0);
-        public static readonly MovingKey Left = new MovingKey(UnityEngine.KeyCode.A, -1, 0);
-        public static readonly MovingKey Back = new MovingKey(UnityEngine.KeyCode.S, 0, -1);
+        public static readonly MovingKey Left = new MovingKey(KeyCode.A, -1, 0);
+        public static readonly MovingKey Back = new MovingKey(KeyCode.S, 0, -1);
 
         /*
          * 動的要素

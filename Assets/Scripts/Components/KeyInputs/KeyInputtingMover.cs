@@ -1,10 +1,8 @@
-using System;
 using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
 using src.positions;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
-using Debug = UnityEngine.Debug;
+using UnityEngine.Serialization;
+// ReSharper disable All
 
 namespace Components.KeyInputs
 {
@@ -13,9 +11,11 @@ namespace Components.KeyInputs
         private Stopwatch _stopwatch;
         private MovablePosition2 _position2;
 
+        [SerializeField] private float moveSpeed = 15;
+
         private void Start()
         {
-            _position2 = new MovablePosition2(gameObject.transform.position,15);
+            _position2 = new MovablePosition2(gameObject.transform.position, 15);
             _stopwatch = new Stopwatch();
         }
 
@@ -25,9 +25,9 @@ namespace Components.KeyInputs
 
             if (!(direction.x == 0 && direction.y == 0))
             {
-                _position2.Move(direction, 15, _stopwatch.ElapsedMilliseconds);
+                _position2.Move(direction, moveSpeed, _stopwatch.ElapsedMilliseconds);
                 _stopwatch.Restart();
-                
+
                 gameObject.transform.position = new Vector3(_position2.X, _position2.Y, 0);
             }
             else
