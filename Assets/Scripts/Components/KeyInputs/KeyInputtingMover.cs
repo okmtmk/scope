@@ -2,6 +2,7 @@ using System.Diagnostics;
 using src.positions;
 using UnityEngine;
 using UnityEngine.Serialization;
+
 // ReSharper disable All
 
 namespace Components.KeyInputs
@@ -26,6 +27,7 @@ namespace Components.KeyInputs
             if (!(direction.x == 0 && direction.y == 0))
             {
                 _position2.Move(direction, moveSpeed, _stopwatch.ElapsedMilliseconds);
+                _position2.FitMovableArea();
                 _stopwatch.Restart();
 
                 gameObject.transform.position = new Vector3(_position2.X, _position2.Y, 0);

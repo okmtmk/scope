@@ -20,33 +20,37 @@ namespace src.positions
             set => _vector2.y = value;
         }
 
+        public bool IsOutside => Math.Sqrt(X * X + Y * Y) > _movableDistance;
+
+        public Vector2 Vector2 => _vector2;
+
         public MovablePosition2(Vector2 position, float movableDistance) : base(position.x, position.y)
         {
             _vector2 = position;
             _movableDistance = movableDistance;
         }
 
+        public MovablePosition2 Move(double radius, float speed, long elapsedMilliSeconds)
+        {
+            X += (float) Math.Cos(radius) * speed * elapsedMilliSeconds / 1000;
+            Y += (float) Math.Sin(radius) * speed * elapsedMilliSeconds / 1000;
+            return this;
+        }
+
         public MovablePosition2 Move(float x, float y, float speed, long elapsedMilliSeconds)
         {
             var radius = Math.Atan2(y, x);
-            X += (float) Math.Cos(radius) * speed * elapsedMilliSeconds / 1000;
-            Y += (float) Math.Sin(radius) * speed * elapsedMilliSeconds / 1000;
-
-            FitMovableArea();
-
-            return this;
+            return Move(radius, speed, elapsedMilliSeconds);
         }
 
         public MovablePosition2 Move(Vector2 vector, float speed, long elapsedMilliSeconds)
         {
-            Move(vector.x, vector.y, speed, elapsedMilliSeconds);
-            return this;
+            return Move(vector.x, vector.y, speed, elapsedMilliSeconds);
         }
 
-        private void FitMovableArea()
+        public void FitMovableArea()
         {
-            var distance = Math.Sqrt(X * X + Y * Y);
-            if (distance > _movableDistance)
+            if (IsOutside)
             {
                 var radius = Math.Atan2(Y, X);
                 X = (float) Math.Cos(radius) * _movableDistance;

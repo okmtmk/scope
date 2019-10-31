@@ -1,19 +1,42 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Diagnostics;
+using UnityEngine;
 
 namespace Components.Shooters
 {
     public class PlayerShooter : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private Bullet bullet;
+        [SerializeField] public long shotRangeMs = 30;
+        [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
+
+        private void Update()
         {
-            
+            if (Input.GetMouseButton(0))
+            {
+                _stopwatch.Start();
+            }
+            else
+            {
+                _stopwatch.Stop();
+            }
+
+            if (Input.GetMouseButton(0) && _stopwatch.ElapsedMilliseconds > shotRangeMs)
+            {
+                Shot();
+                _stopwatch.Restart();
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Shot()
         {
-            
+            var shotBullet = Instantiate(bullet);
+            var gameObjectPosition = gameObject.transform.position;
+            shotBullet.transform.position =
+                new Vector3(gameObjectPosition.x, gameObjectPosition.y, 1);
+
+            shotBullet.transform.rotation = gameObject.transform.rotation;
+            shotBullet.Radius = (gameObject.transform.eulerAngles.z + 90) * Mathf.Deg2Rad;
         }
     }
 }
