@@ -11,13 +11,14 @@ namespace Components.Shooters
         [SerializeField] public long bulletSpeed = 100;
         [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
 
+        private void Start()
+        {
+            _stopwatch.Start();
+        }
+
         private void Update()
         {
-            if (Input.GetMouseButton(0))
-            {
-                _stopwatch.Start();
-            }
-            else
+            if (_stopwatch.ElapsedMilliseconds > shotRangeMs)
             {
                 _stopwatch.Stop();
             }

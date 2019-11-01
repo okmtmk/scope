@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using src.positions;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Components.Shooters
 {
