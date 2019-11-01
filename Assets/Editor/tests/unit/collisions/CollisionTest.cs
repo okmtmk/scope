@@ -6,6 +6,15 @@ namespace Editor.tests.unit.collisions
     public class CollisionTest
     {
         [Test]
+        public void TestCallingCallbackFunction()
+        {
+            Collidable objA = new TestCollidableObject(25, 25, 100, 100);
+            Collidable objB = new TestCollidableObject(25, 25, 100, 100);
+
+            objA.OnCollide(objB);
+        }
+        
+        [Test]
         public void TestCollisionWhenColliding()
         {
             var objA = new TestCollidableObject(25, 25, 100, 100);
