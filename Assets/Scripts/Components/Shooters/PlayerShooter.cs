@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Diagnostics;
+using src.collisions;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Components.Shooters
 {
-    public class PlayerShooter : MonoBehaviour
+    public class PlayerShooter : CollidableBehaviour
     {
         [SerializeField] private Bullet bullet;
         [SerializeField] public long shotRangeMs = 30;
         [SerializeField] public long bulletSpeed = 100;
+
         [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
+
+            sceneModel.Register(this);
             _stopwatch.Start();
         }
 
@@ -39,6 +45,17 @@ namespace Components.Shooters
             shotBullet.Speed = bulletSpeed;
             shotBullet.transform.rotation = gameObject.transform.rotation;
             shotBullet.Radius = (gameObject.transform.eulerAngles.z + 90) * Mathf.Deg2Rad;
+            shotBullet.sceneModel = sceneModel;
+
+            sceneModel.Register(shotBullet);
+        }
+
+        public override void OnCollide(ICollidable collidable)
+        {
+            if (collidable is Enemy)
+            {
+                Debug.Log("当たった");
+            }
         }
     }
 }

@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166854990}
   - component: {fileID: 166854989}
+  - component: {fileID: 166854991}
   m_Layer: 0
   m_Name: SceneModel
   m_TagString: Untagged
@@ -164,6 +165,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &166854991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166854988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e7867a32134c7e8091bb9df019e196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &585884912
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15005dd449fbd4a82992659c44019962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneModel: {fileID: 166854991}
   bullet: {fileID: 9185741569780165479, guid: e96ca7adcf722484db53b3e6a8b24fda, type: 3}
   shotRangeMs: 50
   bulletSpeed: 100
@@ -543,13 +557,27 @@ GameObject:
   m_Component:
   - component: {fileID: 1975107710}
   - component: {fileID: 1975107709}
+  - component: {fileID: 1975107708}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: Sample Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1975107708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975107707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9cd68860aa4933af6f4ae2898fee75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneModel: {fileID: 166854991}
 --- !u!212 &1975107709
 SpriteRenderer:
   m_ObjectHideFlags: 0

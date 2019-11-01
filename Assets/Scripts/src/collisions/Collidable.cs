@@ -1,6 +1,8 @@
+using UnityEngine;
+
 namespace src.collisions
 {
-    public interface Collidable
+    public interface ICollidable
     {
         float X { get; }
         float Y { get; }
@@ -8,6 +10,6 @@ namespace src.collisions
         float Width { get; }
         float Height { get; }
 
-        void OnCollide(Collidable collidable);
+        void OnCollide(ICollidable collidable);
     }
 }

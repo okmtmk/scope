@@ -8,8 +8,8 @@ namespace Editor.tests.unit.collisions
         [Test]
         public void TestCallingCallbackFunction()
         {
-            Collidable objA = new TestCollidableObject(25, 25, 100, 100);
-            Collidable objB = new TestCollidableObject(25, 25, 100, 100);
+            ICollidable objA = new TestCollidableObject(25, 25, 100, 100);
+            ICollidable objB = new TestCollidableObject(25, 25, 100, 100);
 
             objA.OnCollide(objB);
         }

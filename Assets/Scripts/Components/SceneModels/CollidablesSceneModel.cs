@@ -5,27 +5,34 @@ using UnityEngine;
 
 namespace Components.SceneModels
 {
-    public abstract class CollidablesSceneModel : MonoBehaviour
+    public class CollidablesSceneModel : MonoBehaviour
     {
-        [NonSerialized] public readonly List<Collidable> Collidables = new List<Collidable>();
+        [NonSerialized] public readonly List<ICollidable> Collidables = new List<ICollidable>();
 
-        public void Register(Collidable collidable)
+        public void Register(ICollidable collidable)
         {
             Collidables.Add(collidable);
         }
 
-        public void Remove(Collidable collidable)
+        public void Remove(ICollidable collidable)
         {
             Collidables.Remove(collidable);
         }
 
         private void Update()
         {
-            var listA = new List<Collidable>(Collidables);
+            Debug.Log($"size : {Collidables.Count}");
+            var listA = new List<ICollidable>(Collidables);
+            var collideds = new List<ICollidable>();
 
             listA.ForEach(a =>
             {
-                var listB = new List<Collidable>(listA);
+                if (collideds.Contains(a))
+                {
+                    return;
+                }
+                
+                var listB = new List<ICollidable>(listA);
                 listB.Remove(a);
 
                 listB.ForEach(b =>
@@ -35,7 +42,7 @@ namespace Components.SceneModels
                         a.OnCollide(b);
                         b.OnCollide(a);
 
-                        listA.Remove(b);
+                        collideds.Add(b);
                     }
                 });
             });

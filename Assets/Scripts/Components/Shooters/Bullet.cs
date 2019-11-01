@@ -1,37 +1,45 @@
 using System;
 using System.Diagnostics;
+using src.collisions;
 using src.positions;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace Components.Shooters
 {
-    public class Bullet : MonoBehaviour
+    public class Bullet : CollidableBehaviour
     {
         [NonSerialized] public float Speed = 50;
-
         [NonSerialized] public double Radius;
-        [NonSerialized] private MovablePosition2 m_Position;
-        [NonSerialized] private readonly Stopwatch m_Stopwatch = new Stopwatch();
+        [NonSerialized] private MovablePosition2 _position;
+        [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
 
-
-        private void Start()
+        protected override void Start()
         {
-            m_Position = new MovablePosition2(gameObject.transform.position, 20);
-            m_Stopwatch.Start();
+            base.Start();
+
+            _position = new MovablePosition2(gameObject.transform.position, 20);
+            _stopwatch.Start();
         }
 
         private void Update()
         {
-            if (m_Position.IsOutside)
+            if (_position.IsOutside)
             {
                 Destroy(gameObject);
             }
 
-            m_Position.Move(Radius, Speed, m_Stopwatch.ElapsedMilliseconds);
-            gameObject.transform.position = new Vector3(m_Position.Vector2.x, m_Position.Vector2.y, 1);
+            _position.Move(Radius, Speed, _stopwatch.ElapsedMilliseconds);
+            gameObject.transform.position = new Vector3(_position.Vector2.x, _position.Vector2.y, 1);
 
-            m_Stopwatch.Restart();
+            _stopwatch.Restart();
+        }
+
+        public override void OnCollide(ICollidable collidable)
+        {
+            if (collidable is Enemy)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
