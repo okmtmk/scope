@@ -43,7 +43,7 @@ namespace Components.SceneModels
 
         private void Update()
         {
-            Debug.Log($"Collidable Objects : {Collidables.Count}\nCollided Objects : {_collideds.Count}");
+//            Debug.Log($"Collidable Objects : {Collidables.Count}\nCollided Objects : {_collideds.Count}");
             var listA = new List<ICollidable>(Collidables);
             var collideds = new List<ICollidable>();
 
