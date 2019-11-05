@@ -23,7 +23,7 @@ namespace Components.Shooters
 
         private void Update()
         {
-            Debug.Log(Input.mousePosition.x - _baseX);
+//            Debug.Log(Input.mousePosition.x - _baseX);
             gameObject.transform.Rotate(
                 0, 0, -(Input.mousePosition.x - _baseX - beforeFrameRotated) / 100 * rotationSpeed);
             camera.rotation = gameObject.transform.rotation;

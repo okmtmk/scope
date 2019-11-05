@@ -1,7 +1,9 @@
+using System;
 using System.Diagnostics;
 using src.positions;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Debug = UnityEngine.Debug;
 
 // ReSharper disable All
 
@@ -26,7 +28,10 @@ namespace Components.KeyInputs
 
             if (!(direction.x == 0 && direction.y == 0))
             {
-                _position2.Move(direction, moveSpeed, _stopwatch.ElapsedMilliseconds);
+                float radius = (float) Math.Atan2(direction.y, direction.x) +
+                               gameObject.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
+
+                _position2.Move(radius, moveSpeed, _stopwatch.ElapsedMilliseconds);
                 _position2.FitMovableArea();
                 _stopwatch.Restart();
 
