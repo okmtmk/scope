@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using src.collisions;
 using UnityEngine;
 
@@ -19,12 +20,30 @@ namespace Components.SceneModels
 
         public void Remove(ICollidable collidable)
         {
+            RemoveFromCollideds(collidable);
             Collidables.Remove(collidable);
+        }
+
+        private void RemoveFromCollideds(ICollidable collidable)
+        {
+            if (_collideds.ContainsKey(collidable))
+            {
+                _collideds.Remove(collidable);
+            }
+
+            if (_collideds.ContainsValue(collidable))
+            {
+                foreach (var it in _collideds.Where(it => it.Value == collidable))
+                {
+                    _collideds.Remove(it.Key);
+                    break;
+                }
+            }
         }
 
         private void Update()
         {
-            Debug.Log($"size : {Collidables.Count}");
+            Debug.Log($"Collidable Objects : {Collidables.Count}\nCollided Objects : {_collideds.Count}");
             var listA = new List<ICollidable>(Collidables);
             var collideds = new List<ICollidable>();
 
