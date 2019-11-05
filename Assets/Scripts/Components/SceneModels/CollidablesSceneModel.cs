@@ -8,7 +8,9 @@ namespace Components.SceneModels
     public class CollidablesSceneModel : MonoBehaviour
     {
         [NonSerialized] public readonly List<ICollidable> Collidables = new List<ICollidable>();
-        [NonSerialized] private readonly Dictionary<ICollidable,ICollidable> _collideds = new Dictionary<ICollidable,ICollidable>();
+
+        [NonSerialized]
+        private readonly Dictionary<ICollidable, ICollidable> _collideds = new Dictionary<ICollidable, ICollidable>();
 
         public void Register(ICollidable collidable)
         {
@@ -40,34 +42,44 @@ namespace Components.SceneModels
                 {
                     if (CollisionRepository.IsColliding(a, b))
                     {
-                        if (!_collideds.ContainsKey(a))
-                        {
-                            a.OnEnterCollider(b);
-                            _collideds.Add(a,b);
-                        }
-
-                        if (!_collideds.ContainsKey(b))
-                        {
-                            b.OnEnterCollider(a);
-                            _collideds.Add(b,a);
-                        }
-
-                        a.OnCollide(b);
-                        b.OnCollide(a);
+                        Collide(a, b);
 
                         collideds.Add(b);
                     }
                     else
                     {
-                        if (_collideds.ContainsKey(a))
-                        {
-                            var collidable = _collideds[a];
-                            a.OnExitCollider(collidable);
-                            _collideds.Remove(a);
-                        }
+                        HandleExitCollider(a);
                     }
                 });
             });
+        }
+
+        private void Collide(ICollidable a, ICollidable b)
+        {
+            if (!_collideds.ContainsKey(a))
+            {
+                a.OnEnterCollider(b);
+                _collideds.Add(a, b);
+            }
+
+            if (!_collideds.ContainsKey(b))
+            {
+                b.OnEnterCollider(a);
+                _collideds.Add(b, a);
+            }
+
+            a.OnCollide(b);
+            b.OnCollide(a);
+        }
+
+        private void HandleExitCollider(ICollidable obj)
+        {
+            if (_collideds.ContainsKey(obj))
+            {
+                var collidable = _collideds[obj];
+                obj.OnExitCollider(collidable);
+                _collideds.Remove(obj);
+            }
         }
     }
 }
