@@ -17,11 +17,21 @@ namespace Components.Shooters
         public float Height => SpriteRenderer.bounds.size.y;
         public abstract void OnCollide(ICollidable collidable);
 
+        public virtual void OnEnterCollider(ICollidable collidable)
+        {
+            
+        }
+
+        public virtual void OnExitCollider(ICollidable collidable)
+        {
+            
+        }
+
         protected virtual void Start()
         {
             SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         }
-        
+
         protected void OnDisable()
         {
             sceneModel.Remove(this);

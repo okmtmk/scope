@@ -25,5 +25,13 @@ namespace Editor.tests.unit.collisions
         {
             Assert.True(true, "当たり判定出ました！！");
         }
+
+        public void OnEnterCollider(ICollidable collidable)
+        {
+        }
+
+        public void OnExitCollider(ICollidable collidable)
+        {
+        }
     }
 }

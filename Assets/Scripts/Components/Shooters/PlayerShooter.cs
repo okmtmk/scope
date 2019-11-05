@@ -57,5 +57,25 @@ namespace Components.Shooters
                 Debug.Log("当たった");
             }
         }
+
+        public override void OnEnterCollider(ICollidable collidable)
+        {
+            base.OnEnterCollider(collidable);
+
+            if (collidable is Enemy)
+            {
+                Debug.Log("初回当たり判定");
+            }
+        }
+
+        public override void OnExitCollider(ICollidable collidable)
+        {
+            base.OnExitCollider(collidable);
+
+            if (collidable is Enemy)
+            {
+                Debug.Log("最後の当たり判定");
+            }
+        }
     }
 }
