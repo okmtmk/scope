@@ -57,5 +57,10 @@ namespace src.positions
                 Y = (float) Math.Sin(radius) * _movableDistance;
             }
         }
+
+        public void Sync(Vector2 vector)
+        {
+            this._vector2 = vector;
+        }
     }
 }

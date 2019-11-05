@@ -24,13 +24,14 @@ namespace Components.KeyInputs
 
         private void Update()
         {
+            _position2.Sync(gameObject.transform.position);
             var direction = MovingKey.GetMovingDirection();
 
             if (!(direction.x == 0 && direction.y == 0))
             {
                 float radius = (float) Math.Atan2(direction.y, direction.x) +
                                gameObject.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
-
+               
                 _position2.Move(radius, moveSpeed, _stopwatch.ElapsedMilliseconds);
                 _position2.FitMovableArea();
                 _stopwatch.Restart();
