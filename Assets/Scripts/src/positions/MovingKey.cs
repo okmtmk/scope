@@ -30,7 +30,7 @@ namespace src.positions
         /*
          * キャラクターを動かすキー入力を受け取る
          */
-        public static List<MovingKey> Get()
+        private static List<MovingKey> Get()
         {
             var list = new List<MovingKey>();
 
