@@ -9,9 +9,6 @@ namespace src.positions
          * 静的要素
          */
 
-        private static readonly Dictionary<KeyCode, MovingKey> Dictionary
-            = new Dictionary<KeyCode, MovingKey>();
-
         public static readonly MovingKey Forward = new MovingKey(KeyCode.W, 0, 1);
         public static readonly MovingKey Right = new MovingKey(KeyCode.D, 1, 0);
         public static readonly MovingKey Left = new MovingKey(KeyCode.A, -1, 0);
@@ -28,8 +25,6 @@ namespace src.positions
         {
             KeyCode = keyCode;
             _vector2 = new Vector2(x, y);
-
-            Dictionary.Add(keyCode, this);
         }
 
         /*
