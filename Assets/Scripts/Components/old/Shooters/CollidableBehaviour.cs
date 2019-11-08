@@ -1,9 +1,9 @@
 using System;
-using Components.SceneModels;
+using Components.old.SceneModels;
 using src.collisions;
 using UnityEngine;
 
-namespace Components.Shooters
+namespace Components.old.Shooters
 {
     public abstract class CollidableBehaviour : MonoBehaviour, ICollidable
     {

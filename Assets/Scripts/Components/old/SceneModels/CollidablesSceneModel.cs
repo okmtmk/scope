@@ -4,7 +4,7 @@ using System.Linq;
 using src.collisions;
 using UnityEngine;
 
-namespace Components.SceneModels
+namespace Components.old.SceneModels
 {
     public class CollidablesSceneModel : MonoBehaviour
     {

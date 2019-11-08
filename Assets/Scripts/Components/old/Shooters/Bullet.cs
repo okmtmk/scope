@@ -4,7 +4,7 @@ using src.collisions;
 using src.positions;
 using UnityEngine;
 
-namespace Components.Shooters
+namespace Components.old.Shooters
 {
     public class Bullet : CollidableBehaviour
     {

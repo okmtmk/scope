@@ -1,10 +1,11 @@
 using System;
 using Components.simpleColliders;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Components.models
 {
-    public class Shooter : MonoBehaviour
+    public class Player : MonoBehaviour
     {
         private float X
         {

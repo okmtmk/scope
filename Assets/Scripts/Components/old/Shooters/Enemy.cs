@@ -2,7 +2,7 @@ using System;
 using src.collisions;
 using UnityEngine;
 
-namespace Components.Shooters
+namespace Components.old.Shooters
 {
     public class Enemy : CollidableBehaviour
     {
