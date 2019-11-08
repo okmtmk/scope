@@ -9,7 +9,7 @@ namespace Components.models
 {
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] public int speed;
+        [SerializeField] public int speed = 0;
         [NonSerialized] public float RotationZ;
         [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
 
@@ -31,13 +31,15 @@ namespace Components.models
 
         private void Start()
         {
-            gameObject.transform.rotation.eulerAngles.Set(0, 0, RotationZ);
+            gameObject.transform.rotation = Quaternion.Euler(0f, 0f, RotationZ);
             _stopwatch.Start();
         }
 
         private void Update()
         {
             Move(RadianZ);
+
+            _stopwatch.Restart();
         }
 
         public void OnSpriteColliderEnter(SpriteCollider2D other)
@@ -45,7 +47,13 @@ namespace Components.models
             if (other.gameObject.CompareTag("Enemy"))
             {
                 Debug.Log("敵にダメージを与えた！");
+                Destroy(gameObject);
             }
+        }
+
+        public void OnExitMovableArea(int distance)
+        {
+            Destroy(gameObject);
         }
 
         private void Move(double radian)
