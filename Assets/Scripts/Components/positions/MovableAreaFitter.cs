@@ -1,31 +1,29 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Components.positions
 {
+    [Serializable]
+    public class OnMovableAreaExitEvent : UnityEvent<int>
+    {
+    }
+
     public class MovableAreaFitter : MonoBehaviour
     {
         [SerializeField] private int movableDistance = 15;
 
-        private float X
-        {
-            get => gameObject.transform.position.x;
-            set => gameObject.transform.position = new Vector2(value, gameObject.transform.position.y);
-        }
+        [SerializeField] private OnMovableAreaExitEvent onExitMovableArea = new OnMovableAreaExitEvent();
 
-        private float Y
-        {
-            get => gameObject.transform.position.y;
-            set => gameObject.transform.position = new Vector2(gameObject.transform.position.x, value);
-        }
+        private float X => gameObject.transform.position.x;
+
+        private float Y => gameObject.transform.position.y;
 
         private void Update()
         {
-            if (Math.Sqrt(X * X + Y * Y) > 15)
+            if (Math.Sqrt(X * X + Y * Y) > movableDistance)
             {
-                var radian = Math.Atan2(Y, X);
-                X = (float) (Math.Cos(radian) * movableDistance);
-                Y = (float) (Math.Sin(radian) * movableDistance);
+                onExitMovableArea.Invoke(movableDistance);
             }
         }
     }
