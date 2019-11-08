@@ -6,16 +6,21 @@ using UnityEngine.Events;
 
 namespace Components.simpleColliders
 {
+    [Serializable]
+    public class ColliderEvent : UnityEvent<SpriteCollider2D>
+    {
+    }
+
     /**
      * 矩形同士のシンプルな当たり判定処理
      */
     public class SpriteCollider2D : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer sprite;
-        
-        [SerializeField] private UnityEvent<SpriteCollider2D> onColliderEnter;
-        [SerializeField] private UnityEvent<SpriteCollider2D> onColliding;
-        [SerializeField] private UnityEvent<SpriteCollider2D> onColliderExit;
+
+        [SerializeField] private ColliderEvent onColliderEnter = new ColliderEvent();
+        [SerializeField] private ColliderEvent onColliding = new ColliderEvent();
+        [SerializeField] private ColliderEvent onColliderExit = new ColliderEvent();
 
         [NonSerialized] private static readonly List<SpriteCollider2D> Colliders
             = new List<SpriteCollider2D>();
