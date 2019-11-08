@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Components.models;
 using src.colliders;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Components.simpleColliders
 {
@@ -19,9 +21,15 @@ namespace Components.simpleColliders
     {
         [SerializeField] private SpriteRenderer sprite;
 
-        [SerializeField] private ColliderEvent onColliderEnter = new ColliderEvent();
-        [SerializeField] private ColliderEvent onColliding = new ColliderEvent();
-        [SerializeField] private ColliderEvent onColliderExit = new ColliderEvent();
+        [SerializeField] public ColliderEvent onColliderEnter = new ColliderEvent();
+        [SerializeField] public ColliderEvent onColliding = new ColliderEvent();
+        [SerializeField] public ColliderEvent onColliderExit = new ColliderEvent();
+
+        public float X => gameObject.transform.position.x;
+        public float Y => gameObject.transform.position.y;
+
+        public float Width => sprite.bounds.size.x;
+        public float Height => sprite.bounds.size.y;
 
         [NonSerialized] private static readonly List<SpriteCollider2D> Colliders
             = new List<SpriteCollider2D>();
@@ -29,11 +37,6 @@ namespace Components.simpleColliders
         [NonSerialized] private static readonly List<CollidedPair> CollidedPairs
             = new List<CollidedPair>();
 
-        private float X => gameObject.transform.position.x;
-        private float Y => gameObject.transform.position.y;
-
-        private float Width => sprite.bounds.size.x;
-        private float Height => sprite.bounds.size.y;
 
         private void OnEnable()
         {
@@ -42,74 +45,79 @@ namespace Components.simpleColliders
 
         private void OnDisable()
         {
+            RemoveContainCollidedPair();
             Colliders.Remove(this);
-
-            foreach (var it in CollidedPairs.Where(it => it.IsContains(this)))
-            {
-                CollidedPairs.Remove(it);
-                break;
-            }
         }
 
         private void Update()
         {
-            var dicideds = new List<CollidedPair>();
-            var listA = new List<SpriteCollider2D>(Colliders);
+            var list = new List<SpriteCollider2D>(Colliders);
+            list.Remove(this);
 
-            listA.ForEach(a =>
+            list.ForEach(b =>
             {
-                var listB = new List<SpriteCollider2D>(listA);
-                listB.Remove(a);
-
-                listB.ForEach(b =>
+                if (IsColliding(b))
                 {
-                    if (IsPairCollided(dicideds, a, b))
-                    {
-                        return;
-                    }
-
-                    if (IsColliding(a, b))
-                    {
-                        dicideds.Add(new CollidedPair(a, b));
-                        HandleColliding(a, b);
-                    }
-                    else if (IsPairCollided(CollidedPairs, a, b))
-                    {
-                        HandleColliderExit(a, b);
-                    }
-                });
+                    HandleColliding(b);
+                }
+                else if (IsCollidedPair(b))
+                {
+                    HandleColliderExit(b);
+                }
             });
         }
-
-        private static bool IsColliding(SpriteCollider2D a, SpriteCollider2D b)
+        
+        private bool IsColliding(SpriteCollider2D other)
         {
-            return Math.Abs(a.X - b.X) < a.Width / 2 + b.Width / 2 &&
-                   Math.Abs(a.Y - b.Y) < a.Height / 2 + b.Height / 2;
+            return Math.Abs(X - other.X) < Width / 2 + other.Width / 2 &&
+                   Math.Abs(Y - other.Y) < Height / 2 + other.Height / 2;
         }
-
-        private static void HandleColliding(SpriteCollider2D a, SpriteCollider2D b)
+        
+        private void HandleColliding(SpriteCollider2D other)
         {
-            if (!IsPairCollided(CollidedPairs, a, b))
+            if (!IsCollidedPair(other))
             {
-                a.onColliderEnter.Invoke(b);
-                b.onColliderEnter.Invoke(a);
+                CollidedPairs.Add(new CollidedPair(this, other));
 
-                CollidedPairs.Add(new CollidedPair(a, b));
+                onColliderEnter.Invoke(other);
+                other.onColliderEnter.Invoke(this);
             }
 
-            a.onColliding.Invoke(b);
-            b.onColliding.Invoke(a);
+            onColliding.Invoke(other);
+            other.onColliding.Invoke(this);
+        }
+        
+        private void HandleColliderExit(SpriteCollider2D other)
+        {
+            RemoveCollidedPair(other);
+
+            onColliderExit.Invoke(other);
+            other.onColliderExit.Invoke(this);
+        }
+        
+        private bool IsCollidedPair(SpriteCollider2D other)
+        {
+            return CollidedPairs.Any(it => it.IsEquals(this, other));
         }
 
-        private static void HandleColliderExit(SpriteCollider2D a, SpriteCollider2D b)
+        private void RemoveCollidedPair(SpriteCollider2D other)
         {
-            a.onColliderExit.Invoke(b);
-            b.onColliderExit.Invoke(a);
+            CollidedPair target = null;
+            foreach (var it in CollidedPairs.Where(it => it.IsEquals(this, other)))
+            {
+                target = it;
+            }
+
+            if (target != null)
+            {
+                CollidedPairs.Remove(target);
+            }
         }
 
-        private static bool IsPairCollided(List<CollidedPair> list, SpriteCollider2D a, SpriteCollider2D b)
+        private void RemoveContainCollidedPair()
         {
-            return list.Any(it => it.IsEquals(a, b));
+            var list = CollidedPairs.Where(it => it.IsContains(this)).ToList();
+            list.ForEach(it => CollidedPairs.Remove(it));
         }
     }
 }
