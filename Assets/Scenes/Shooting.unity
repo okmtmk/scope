@@ -130,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 166854990}
   - component: {fileID: 166854989}
-  - component: {fileID: 166854991}
   m_Layer: 0
   m_Name: SceneModel
   m_TagString: Untagged
@@ -165,18 +164,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &166854991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166854988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46e7867a32134c7e8091bb9df019e196, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &247324528
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,9 +430,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1677927888}
   - component: {fileID: 1677927887}
-  - component: {fileID: 1677927889}
   - component: {fileID: 1677927886}
-  - component: {fileID: 1677927890}
+  - component: {fileID: 1677927889}
   m_Layer: 0
   m_Name: PlayerShooter
   m_TagString: Untagged
@@ -462,13 +448,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1677927885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15005dd449fbd4a82992659c44019962, type: 3}
+  m_Script: {fileID: 11500000, guid: 78854d790d2747ad8502a747f3d19c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneModel: {fileID: 166854991}
-  bullet: {fileID: 9185741569780165479, guid: e96ca7adcf722484db53b3e6a8b24fda, type: 3}
-  shotRangeMs: 50
-  bulletSpeed: 100
+  moveSpeed: 20
 --- !u!212 &1677927887
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -541,24 +524,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1677927885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78854d790d2747ad8502a747f3d19c24, type: 3}
+  m_Script: {fileID: 11500000, guid: c49b7b63fa934d0d942107ddc8cb65bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
---- !u!114 &1677927890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677927885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71866b8094ce4261847506b79e19b518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 10
-  camera: {fileID: 1838991918}
+  rotator: {fileID: 1838991919}
 --- !u!1 &1838991915
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +539,7 @@ GameObject:
   - component: {fileID: 1838991918}
   - component: {fileID: 1838991917}
   - component: {fileID: 1838991916}
+  - component: {fileID: 1838991919}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -642,6 +612,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1838991919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838991915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9a63caa26342348d9cc54c7503e4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 5
 --- !u!1 &1975107707
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +635,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1975107710}
   - component: {fileID: 1975107709}
-  - component: {fileID: 1975107708}
   m_Layer: 0
   m_Name: Sample Enemy
   m_TagString: Untagged
@@ -660,19 +642,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1975107708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975107707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9cd68860aa4933af6f4ae2898fee75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneModel: {fileID: 166854991}
 --- !u!212 &1975107709
 SpriteRenderer:
   m_ObjectHideFlags: 0

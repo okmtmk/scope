@@ -2,63 +2,45 @@ using System;
 using System.Diagnostics;
 using src.positions;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Components.positions
 {
     public class KeyInputMover : MonoBehaviour
     {
-        private Stopwatch _stopwatch;
-        private MovablePosition2 _position2;
+        private readonly Stopwatch _stopwatch = new Stopwatch();
 
-        [SerializeField] private float moveSpeed = 15;
+        [SerializeField] private float moveSpeed = 20;
 
         private float X
         {
             get => gameObject.transform.position.x;
-            set
-            {
-                var position = gameObject.transform.position;
-                position.Set(
-                    value,
-                    position.y,
-                    position.z
-                );
-            }
+            set => gameObject.transform.position = new Vector2(value, gameObject.transform.position.y);
         }
 
         private float Y
         {
             get => gameObject.transform.position.y;
-            set
-            {
-                var position = gameObject.transform.position;
-                position.Set(
-                    position.x,
-                    value,
-                    position.z
-                );
-            }
+            set => gameObject.transform.position = new Vector2(gameObject.transform.position.x, value);
         }
 
         private float RadianZ => gameObject.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
-        private long ElapsedSecond => _stopwatch.ElapsedMilliseconds / 1000;
+        private float ElapsedSecond => _stopwatch.ElapsedMilliseconds / 1000f;
 
         private void Start()
         {
-            _position2 = new MovablePosition2(gameObject.transform.position, 15);
-            _stopwatch = new Stopwatch();
+            _stopwatch.Start();
         }
 
         private void Update()
         {
-            _position2.Sync(gameObject.transform.position);
             var direction = MovingKey.GetMovingDirection();
 
             if (Math.Abs(direction.x) > 0 || Math.Abs(direction.y) > 0)
             {
                 var radian = (float) Math.Atan2(direction.y, direction.x) + RadianZ;
                 Move(radian);
-                
+
                 _stopwatch.Restart();
             }
             else
@@ -70,6 +52,7 @@ namespace Components.positions
 
         private void Move(float radian)
         {
+            Debug.Log($"x : {X}\ty : {Y}");
             X += (float) Math.Cos(radian) * moveSpeed * ElapsedSecond;
             Y += (float) Math.Sin(radian) * moveSpeed * ElapsedSecond;
         }
