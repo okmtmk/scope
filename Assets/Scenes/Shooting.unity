@@ -601,7 +601,7 @@ MonoBehaviour:
   onColliderEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1677927891}
         m_MethodName: OnSpriteCollisionEnter
         m_Mode: 0
         m_Arguments:
