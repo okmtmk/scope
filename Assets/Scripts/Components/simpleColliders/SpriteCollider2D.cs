@@ -1,22 +1,27 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Components.simpleColliders
 {
-    public class SimpleCollider : MonoBehaviour
+    /**
+     * 矩形同士のシンプルな当たり判定処理
+     */
+    public class SpriteCollider2D : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer sprite;
-        [SerializeField] private UnityEvent<SimpleCollider> onColliderEnter;
-        [SerializeField] private UnityEvent<SimpleCollider> onColliding;
-        [SerializeField] private UnityEvent<SimpleCollider> onColliderExit;
+        
+        [SerializeField] private UnityEvent<SpriteCollider2D> onColliderEnter;
+        [SerializeField] private UnityEvent<SpriteCollider2D> onColliding;
+        [SerializeField] private UnityEvent<SpriteCollider2D> onColliderExit;
 
-        [NonSerialized] private static readonly List<SimpleCollider> Colliders
-            = new List<SimpleCollider>();
+        [NonSerialized] private static readonly List<SpriteCollider2D> Colliders
+            = new List<SpriteCollider2D>();
 
-        [NonSerialized] private static readonly Dictionary<SimpleCollider, SimpleCollider> Collideds
-            = new Dictionary<SimpleCollider, SimpleCollider>();
+        [NonSerialized] private static readonly Dictionary<SpriteCollider2D, SpriteCollider2D> Collideds
+            = new Dictionary<SpriteCollider2D, SpriteCollider2D>();
 
         private float X => gameObject.transform.position.x;
         private float Y => gameObject.transform.position.y;
@@ -24,15 +29,34 @@ namespace Components.simpleColliders
         private float Width => sprite.bounds.size.x;
         private float Height => sprite.bounds.size.y;
 
-        private void Start()
+        private void OnEnable()
         {
             Colliders.Add(this);
         }
 
+        private void OnDisable()
+        {
+            Colliders.Remove(this);
+
+            if (Collideds.ContainsKey(this))
+            {
+                Collideds.Remove(this);
+            }
+
+            if (Collideds.ContainsValue(this))
+            {
+                foreach (var spriteCollider2D in Collideds.Where(spriteCollider2D => spriteCollider2D.Value == this))
+                {
+                    Collideds.Remove(spriteCollider2D.Key);
+                    break;
+                }
+            }
+        }
+
         private void Update()
         {
-            var listA = new List<SimpleCollider>(Colliders);
-            var decideds = new List<SimpleCollider>();
+            var listA = new List<SpriteCollider2D>(Colliders);
+            var decideds = new List<SpriteCollider2D>();
 
             listA.ForEach(a =>
             {
@@ -41,7 +65,7 @@ namespace Components.simpleColliders
                     return;
                 }
 
-                var listB = new List<SimpleCollider>(listA);
+                var listB = new List<SpriteCollider2D>(listA);
                 listB.Remove(a);
 
                 listB.ForEach(b =>
@@ -59,13 +83,13 @@ namespace Components.simpleColliders
             });
         }
 
-        private static bool IsColliding(SimpleCollider a, SimpleCollider b)
+        private static bool IsColliding(SpriteCollider2D a, SpriteCollider2D b)
         {
             return Math.Abs(a.X - b.X) < a.Width / 2 + b.Width / 2 &&
                    Math.Abs(a.Y - b.Y) < a.Height / 2 + b.Height / 2;
         }
 
-        private static void HandleColliding(SimpleCollider a, SimpleCollider b)
+        private static void HandleColliding(SpriteCollider2D a, SpriteCollider2D b)
         {
             if (!Collideds.ContainsKey(a))
             {
@@ -83,7 +107,7 @@ namespace Components.simpleColliders
             b.onColliding.Invoke(a);
         }
 
-        private static void HandleColliderExit(SimpleCollider obj)
+        private static void HandleColliderExit(SpriteCollider2D obj)
         {
             if (Collideds.ContainsKey(obj))
             {
