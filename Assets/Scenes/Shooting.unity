@@ -631,8 +631,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 987909274154513368, guid: e96ca7adcf722484db53b3e6a8b24fda, type: 3}
-  shotRangeMs: 50
-  speed: 20
+  shotRangeMs: 40
+  speed: 80
 --- !u!1 &1838991915
 GameObject:
   m_ObjectHideFlags: 0
