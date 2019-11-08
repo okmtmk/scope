@@ -5,23 +5,38 @@ namespace Components.rotations
 {
     public class MouseInputRotator : MonoBehaviour
     {
-        [SerializeField] private int rotateSpeed = 5;
+        [SerializeField] private int rotateSpeed = 1;
 
         [NonSerialized] private float _mouseBasePositionX;
 
-        public float RadianZ => gameObject.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
-        private float Angle => -(Input.mousePosition.x - _mouseBasePositionX) / 10 * rotateSpeed;
+        private float RotationZ
+        {
+            get => gameObject.transform.rotation.eulerAngles.z;
+            set => gameObject.transform.rotation = Quaternion.Euler(0f, 0f, value);
+        }
 
+        public float RadianZ => RotationZ * Mathf.Deg2Rad;
+
+        private float Angle => -(Input.mousePosition.x - _mouseBasePositionX) / 10 * rotateSpeed;
 
         private void Start()
         {
-            _mouseBasePositionX = Input.mousePosition.x;
+            SetMouseBasePosition();
         }
 
         private void Update()
         {
-            gameObject.transform.rotation =
-                Quaternion.Euler(0f, 0f, Angle);
+            RotationZ = Angle;
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SetMouseBasePosition();
+            }
+        }
+
+        private void SetMouseBasePosition()
+        {
+            _mouseBasePositionX = Input.mousePosition.x;
         }
     }
 }
