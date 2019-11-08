@@ -7,7 +7,7 @@ namespace Components.rotations
     {
         [SerializeField] private MouseInputRotator rotator;
 
-        [NonSerialized] private double _beforeFrameRadian = 0;
+        [NonSerialized] private double _beforeFrameRadian;
 
 
         private float X
