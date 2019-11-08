@@ -432,6 +432,9 @@ GameObject:
   - component: {fileID: 1677927887}
   - component: {fileID: 1677927886}
   - component: {fileID: 1677927889}
+  - component: {fileID: 1677927890}
+  - component: {fileID: 1677927891}
+  - component: {fileID: 1677927892}
   m_Layer: 0
   m_Name: PlayerShooter
   m_TagString: Untagged
@@ -528,6 +531,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotator: {fileID: 1838991919}
+--- !u!114 &1677927890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677927885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0381b347e8d54c71941e3901936d56fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movableDistance: 15
+  onExitMovableArea:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1677927891}
+        m_MethodName: OnExitMovableArea
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1677927891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677927885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52fa592211849679fe4b6fac519b55e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1677927892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677927885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9a63caa26342348d9cc54c7503e4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 1
 --- !u!1 &1838991915
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9a63caa26342348d9cc54c7503e4f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 5
+  rotateSpeed: 1
 --- !u!1 &1975107707
 GameObject:
   m_ObjectHideFlags: 0

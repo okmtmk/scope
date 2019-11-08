@@ -15,13 +15,13 @@ namespace Components.positions
         private float X
         {
             get => gameObject.transform.position.x;
-            set => gameObject.transform.position = new Vector2(value, gameObject.transform.position.y);
+            set => gameObject.transform.position = new Vector2(value, Y);
         }
 
         private float Y
         {
             get => gameObject.transform.position.y;
-            set => gameObject.transform.position = new Vector2(gameObject.transform.position.x, value);
+            set => gameObject.transform.position = new Vector2(X, value);
         }
 
         private float RadianZ => gameObject.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
@@ -52,7 +52,6 @@ namespace Components.positions
 
         private void Move(float radian)
         {
-            Debug.Log($"x : {X}\ty : {Y}");
             X += (float) Math.Cos(radian) * moveSpeed * ElapsedSecond;
             Y += (float) Math.Sin(radian) * moveSpeed * ElapsedSecond;
         }

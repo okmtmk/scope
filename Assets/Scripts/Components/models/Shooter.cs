@@ -8,13 +8,13 @@ namespace Components.models
         private float X
         {
             get => gameObject.transform.position.x;
-            set => gameObject.transform.position = new Vector2(value, gameObject.transform.position.y);
+            set => gameObject.transform.position = new Vector2(value, Y);
         }
 
         private float Y
         {
             get => gameObject.transform.position.y;
-            set => gameObject.transform.position = new Vector2(gameObject.transform.position.x, value);
+            set => gameObject.transform.position = new Vector2(X, value);
         }
 
         public void OnExitMovableArea(int movableDistance)
