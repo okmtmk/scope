@@ -1,10 +1,9 @@
 using System;
 using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 using Debug = UnityEngine.Debug;
 
-namespace Components.Shooters
+namespace Components.old.Shooters
 {
     public class CameraRotator : MonoBehaviour
     {

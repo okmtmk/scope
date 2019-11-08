@@ -38,7 +38,7 @@ namespace Components.positions
 
             if (Math.Abs(direction.x) > 0 || Math.Abs(direction.y) > 0)
             {
-                var radian = (float) Math.Atan2(direction.y, direction.x) + RadianZ;
+                var radian = Math.Atan2(direction.y, direction.x) + RadianZ;
                 Move(radian);
 
                 _stopwatch.Restart();
@@ -50,7 +50,7 @@ namespace Components.positions
             }
         }
 
-        private void Move(float radian)
+        private void Move(double radian)
         {
             X += (float) Math.Cos(radian) * moveSpeed * ElapsedSecond;
             Y += (float) Math.Sin(radian) * moveSpeed * ElapsedSecond;

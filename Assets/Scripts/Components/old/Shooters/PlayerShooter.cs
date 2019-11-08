@@ -4,7 +4,7 @@ using src.collisions;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-namespace Components.Shooters
+namespace Components.old.Shooters
 {
     public class PlayerShooter : CollidableBehaviour
     {
