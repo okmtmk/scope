@@ -433,10 +433,10 @@ GameObject:
   - component: {fileID: 1677927886}
   - component: {fileID: 1677927889}
   - component: {fileID: 1677927890}
-  - component: {fileID: 1677927891}
   - component: {fileID: 1677927892}
   - component: {fileID: 1677927893}
   - component: {fileID: 1677927894}
+  - component: {fileID: 1677927891}
   m_Layer: 0
   m_Name: PlayerShooter
   m_TagString: Untagged
@@ -549,7 +549,7 @@ MonoBehaviour:
   onExitMovableArea:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1677927891}
+      - m_Target: {fileID: 0}
         m_MethodName: OnExitMovableArea
         m_Mode: 0
         m_Arguments:
@@ -601,7 +601,7 @@ MonoBehaviour:
   onColliderEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1677927891}
+      - m_Target: {fileID: 0}
         m_MethodName: OnSpriteCollisionEnter
         m_Mode: 0
         m_Arguments:
