@@ -16,7 +16,7 @@ namespace Components.rotations
             }
             else
             {
-                RotationZ += rotator.Angle;
+                RotationZ = rotator.OuterRotationZ;
             }
         }
     }
