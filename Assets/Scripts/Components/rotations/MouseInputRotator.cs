@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Components.rotations
@@ -11,7 +12,7 @@ namespace Components.rotations
         [NonSerialized] private const float RotationLimit = 45;
         [NonSerialized] public float InnerRotationZ;
 
-        public float RotationZ
+        protected float RotationZ
         {
             get => gameObject.transform.rotation.eulerAngles.z;
             set => gameObject.transform.rotation = Quaternion.Euler(0f, 0f, value);
@@ -19,13 +20,13 @@ namespace Components.rotations
 
         public float RadianZ => RotationZ * Mathf.Deg2Rad;
 
-        public float Angle => Input.GetAxis("Mouse X") * -rotateSpeed * 0.1f;
+        private float Angle => Input.GetAxis("Mouse X") * -rotateSpeed * 0.1f;
 
         public float OuterRotationZ
         {
             get
             {
-                if (InnerRotationZ <= RotationLimit && InnerRotationZ >= -RotationLimit)
+                if (IsInRange)
                 {
                     return InnerRotationZ;
                 }
@@ -38,6 +39,8 @@ namespace Components.rotations
                 return -RotationLimit;
             }
         }
+
+        public bool IsInRange => InnerRotationZ <= RotationLimit && InnerRotationZ >= -RotationLimit;
 
         protected virtual void Start()
         {
