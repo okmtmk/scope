@@ -9,7 +9,7 @@ namespace Components.rotations
 
         [NonSerialized] private float _mouseBasePositionX;
 
-        private float RotationZ
+        protected float RotationZ
         {
             get => gameObject.transform.rotation.eulerAngles.z;
             set => gameObject.transform.rotation = Quaternion.Euler(0f, 0f, value);
@@ -17,14 +17,14 @@ namespace Components.rotations
 
         public float RadianZ => RotationZ * Mathf.Deg2Rad;
 
-        private float Angle => -(Input.mousePosition.x - _mouseBasePositionX) / 10 * rotateSpeed;
+        public float Angle => -(Input.mousePosition.x - _mouseBasePositionX) / 100 * rotateSpeed;
 
-        private void Start()
+        protected virtual void Start()
         {
             SetMouseBasePosition();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             RotationZ = Angle;
 
@@ -34,7 +34,7 @@ namespace Components.rotations
             }
         }
 
-        private void SetMouseBasePosition()
+        protected void SetMouseBasePosition()
         {
             _mouseBasePositionX = Input.mousePosition.x;
         }
