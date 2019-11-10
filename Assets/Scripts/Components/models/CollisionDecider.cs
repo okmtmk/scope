@@ -81,15 +81,9 @@ namespace Components.models
         private void RemoveCollidedPair(SpriteCollider2D a, SpriteCollider2D b)
         {
             CollidedPair target = null;
-            foreach (var it in CollidedPairs.Where(it => it.IsEquals(a, b)))
-            {
-                target = it;
-            }
+            foreach (var it in CollidedPairs.Where(it => it.IsEquals(a, b))) target = it;
 
-            if (target != null)
-            {
-                CollidedPairs.Remove(target);
-            }
+            if (target != null) CollidedPairs.Remove(target);
         }
 
         public static void RemoveContainCollidedPair(SpriteCollider2D obj)
@@ -97,10 +91,7 @@ namespace Components.models
             var num = 0;
             CollidedPairs.ForEach(it =>
             {
-                if (it.IsContains(obj))
-                {
-                    num++;
-                }
+                if (it.IsContains(obj)) num++;
             });
 
             Debug.Log($"contains : {num}");

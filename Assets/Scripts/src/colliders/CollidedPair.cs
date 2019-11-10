@@ -1,5 +1,4 @@
 using Components.simpleColliders;
-using UnityEngine;
 
 namespace src.colliders
 {

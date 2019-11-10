@@ -21,10 +21,7 @@ namespace Components.positions
 
         private void Update()
         {
-            if (Math.Sqrt(X * X + Y * Y) > movableDistance)
-            {
-                onExitMovableArea.Invoke(movableDistance);
-            }
+            if (Math.Sqrt(X * X + Y * Y) > movableDistance) onExitMovableArea.Invoke(movableDistance);
         }
     }
 }

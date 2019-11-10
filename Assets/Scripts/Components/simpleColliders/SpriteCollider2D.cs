@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Components.models;
 using src.colliders;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace Components.simpleColliders
 {
@@ -19,17 +17,6 @@ namespace Components.simpleColliders
      */
     public class SpriteCollider2D : MonoBehaviour
     {
-        [SerializeField] private SpriteRenderer sprite;
-        [SerializeField] public ColliderEvent onColliderEnter = new ColliderEvent();
-        [SerializeField] public ColliderEvent onColliding = new ColliderEvent();
-        [SerializeField] public ColliderEvent onColliderExit = new ColliderEvent();
-
-        public float X => gameObject.transform.position.x;
-        public float Y => gameObject.transform.position.y;
-
-        public float Width => sprite.bounds.size.x;
-        public float Height => sprite.bounds.size.y;
-
         /*
          * 静的フィールド
          */
@@ -48,6 +35,16 @@ namespace Components.simpleColliders
             = new List<CollidedPair>();
 
         [NonSerialized] private static int _processFrameCount;
+        [SerializeField] public ColliderEvent onColliderEnter = new ColliderEvent();
+        [SerializeField] public ColliderEvent onColliderExit = new ColliderEvent();
+        [SerializeField] public ColliderEvent onColliding = new ColliderEvent();
+        [SerializeField] private SpriteRenderer sprite;
+
+        public float X => gameObject.transform.position.x;
+        public float Y => gameObject.transform.position.y;
+
+        public float Width => sprite.bounds.size.x;
+        public float Height => sprite.bounds.size.y;
 
         private static bool IsSameFrame => Time.frameCount == _processFrameCount;
 
@@ -68,10 +65,7 @@ namespace Components.simpleColliders
 
         private void Update()
         {
-            if (!IsSameFrame)
-            {
-                FreshCollided();
-            }
+            if (!IsSameFrame) FreshCollided();
 
             var list = new List<SpriteCollider2D>(Colliders);
             list.Remove(this);
@@ -79,22 +73,12 @@ namespace Components.simpleColliders
             list.ForEach(other =>
             {
                 if (IsDecidedPairInFrame(other))
-                {
                     return;
-                }
-                else
-                {
-                    AddSameFrameDecidedPair(other);
-                }
+                AddSameFrameDecidedPair(other);
 
                 if (IsColliding(other))
-                {
                     HandleColliding(other);
-                }
-                else if (IsCollidedPair(other))
-                {
-                    HandleColliderExit(other);
-                }
+                else if (IsCollidedPair(other)) HandleColliderExit(other);
             });
         }
 
@@ -103,7 +87,7 @@ namespace Components.simpleColliders
          */
 
         /// <summary>
-        /// 他方と重なっているか調べる
+        ///     他方と重なっているか調べる
         /// </summary>
         /// <param name="other">比較対象</param>
         /// <returns>重なっているかどうか</returns>
@@ -114,7 +98,7 @@ namespace Components.simpleColliders
         }
 
         /// <summary>
-        /// 前フレームで重なっていたかどうか調べる
+        ///     前フレームで重なっていたかどうか調べる
         /// </summary>
         /// <param name="other">比較対象</param>
         /// <returns>重なっていたどうか</returns>
@@ -128,8 +112,8 @@ namespace Components.simpleColliders
          */
 
         /// <summary>
-        /// 重なった時のコールバックメソッドを実行します。
-        /// 前フレームで重なっていなかったペアであればOnColliderEnterイベントもハンドルします。
+        ///     重なった時のコールバックメソッドを実行します。
+        ///     前フレームで重なっていなかったペアであればOnColliderEnterイベントもハンドルします。
         /// </summary>
         /// <param name="other">重なっているオブジェクト</param>
         private void HandleColliding(SpriteCollider2D other)
@@ -147,7 +131,7 @@ namespace Components.simpleColliders
         }
 
         /// <summary>
-        /// 重ならなくなった時のコールバックメソッドを実行します。
+        ///     重ならなくなった時のコールバックメソッドを実行します。
         /// </summary>
         /// <param name="other">重なっていたオブジェクト</param>
         private void HandleColliderExit(SpriteCollider2D other)
@@ -163,25 +147,19 @@ namespace Components.simpleColliders
          */
 
         /// <summary>
-        /// 重なっていたオブジェクトのペアを削除します
+        ///     重なっていたオブジェクトのペアを削除します
         /// </summary>
         /// <param name="other">重なっていたオブジェクト</param>
         private void RemoveCollidedPair(SpriteCollider2D other)
         {
             CollidedPair target = null;
-            foreach (var it in CollidedPairs.Where(it => it.IsEquals(this, other)))
-            {
-                target = it;
-            }
+            foreach (var it in CollidedPairs.Where(it => it.IsEquals(this, other))) target = it;
 
-            if (target != null)
-            {
-                CollidedPairs.Remove(target);
-            }
+            if (target != null) CollidedPairs.Remove(target);
         }
 
         /// <summary>
-        /// 重なっていたオブジェクトのペアからインスタンスが含まれているペアをすべて削除します
+        ///     重なっていたオブジェクトのペアからインスタンスが含まれているペアをすべて削除します
         /// </summary>
         private void RemoveContainCollidedPair()
         {
@@ -194,7 +172,7 @@ namespace Components.simpleColliders
          */
 
         /// <summary>
-        /// 同一フレームで当たり判定処理をしているか判定します
+        ///     同一フレームで当たり判定処理をしているか判定します
         /// </summary>
         /// <param name="other">重なっているオブジェクト</param>
         /// <returns>同一フレームで当たり判定処理済みであるか否か</returns>
@@ -204,7 +182,7 @@ namespace Components.simpleColliders
         }
 
         /// <summary>
-        /// 同一フレームでの当たり判定処理済みペアリストをクリアします
+        ///     同一フレームでの当たり判定処理済みペアリストをクリアします
         /// </summary>
         private static void FreshCollided()
         {
@@ -213,7 +191,7 @@ namespace Components.simpleColliders
         }
 
         /// <summary>
-        /// 同一フレームでの当たり判定処理済みペアとしてリストに追加します
+        ///     同一フレームでの当たり判定処理済みペアとしてリストに追加します
         /// </summary>
         /// <param name="other">重なっているオブジェクト</param>
         private void AddSameFrameDecidedPair(SpriteCollider2D other)
