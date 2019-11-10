@@ -5,9 +5,8 @@ namespace Components.rotations
 {
     public class RotatedObjectFixer : MonoBehaviour
     {
-        [SerializeField] private MouseInputRotator rotator;
-
         [NonSerialized] private double _beforeFrameRadian;
+        [SerializeField] private MouseInputRotator rotator;
 
 
         private float X

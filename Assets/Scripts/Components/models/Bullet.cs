@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 using Components.simpleColliders;
-using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -9,9 +8,9 @@ namespace Components.models
 {
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] public int speed = 0;
-        [NonSerialized] public float RotationZ;
         [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
+        [NonSerialized] public float RotationZ;
+        [SerializeField] public int speed;
 
         private float X
         {
