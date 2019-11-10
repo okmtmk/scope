@@ -7,11 +7,10 @@ namespace Components.instatiater
 {
     public class BulletShooter : MonoBehaviour
     {
+        [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
         [SerializeField] private Bullet bullet;
         [SerializeField] private long shotRangeMs;
         [SerializeField] private int speed;
-
-        [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
 
         private float X => gameObject.transform.position.x;
         private float Y => gameObject.transform.position.y;

@@ -1,7 +1,6 @@
 using System;
 using Components.simpleColliders;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Components.models
 {
@@ -28,26 +27,17 @@ namespace Components.models
 
         public void OnSpriteCollisionEnter(SpriteCollider2D other)
         {
-            if (other.gameObject.CompareTag("Enemy"))
-            {
-                Debug.Log("敵にあたった！");
-            }
+            if (other.gameObject.CompareTag("Enemy")) Debug.Log("敵にあたった！");
         }
 
         public void OnSpriteColliding(SpriteCollider2D other)
         {
-            if (other.gameObject.CompareTag("Enemy"))
-            {
-                Debug.Log("敵にめり込んでる");
-            }
+            if (other.gameObject.CompareTag("Enemy")) Debug.Log("敵にめり込んでる");
         }
 
         public void OnSpriteColliderExit(SpriteCollider2D other)
         {
-            if (other.gameObject.CompareTag("Enemy"))
-            {
-                Debug.Log("敵から離れた");
-            }
+            if (other.gameObject.CompareTag("Enemy")) Debug.Log("敵から離れた");
         }
     }
 }
