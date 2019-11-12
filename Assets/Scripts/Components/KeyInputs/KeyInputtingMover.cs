@@ -27,7 +27,6 @@ namespace Components.KeyInputs
             if (!(direction.x == 0 && direction.y == 0))
             {
                 _position2.Move(direction, moveSpeed, _stopwatch.ElapsedMilliseconds);
-                _position2.FitMovableArea();
                 _stopwatch.Restart();
 
                 gameObject.transform.position = new Vector3(_position2.X, _position2.Y, 0);
@@ -37,6 +36,7 @@ namespace Components.KeyInputs
                 _stopwatch.Stop();
                 _stopwatch.Reset();
             }
+            _position2.FitMovableArea();
         }
     }
 }
