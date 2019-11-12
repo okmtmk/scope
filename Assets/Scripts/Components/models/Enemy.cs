@@ -16,7 +16,7 @@ namespace Components.models
 
         private void Update()
         {
-            if (_stopwatch.ElapsedMilliseconds > 10000)
+            if (_stopwatch.ElapsedMilliseconds > 5000)
             {
                 Destroy(gameObject);
             }

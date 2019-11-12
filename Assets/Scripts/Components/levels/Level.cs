@@ -6,6 +6,6 @@ namespace Components.levels
 {
     public abstract class Level : MonoBehaviour
     {
-        public abstract void Register(Dictionary<long, Action<LevelPlayer>> spawnEvent);
+        public abstract void Register(Dictionary<long, Action<LevelPlayer>> events);
     }
 }
