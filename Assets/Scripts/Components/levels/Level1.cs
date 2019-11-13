@@ -14,22 +14,26 @@ namespace Components.levels
 
         public override void Register(Dictionary<long, Action<LevelPlayer>> events)
         {
-            SpawnGoStraightAndStopCube(events, 0, 20, 500);
-            SpawnGoStraightAndStopCube(events, 6, 20, 2500);
-            SpawnGoStraightAndStopCube(events, -6, 20, 4500);
-            
-            SpawnCurveRightCube(events, 16, 16, 6000, -45);
-            SpawnCurveLeftCube(events, -16, 16, 8000, 45);
-            
-            SpawnGoStraightDia(events, 0, 20, 9500);
-            SpawnGoStraightDia(events, 6, 20, 11500);
-            SpawnGoStraightDia(events, -6, 20, 13500);
-            
-            SpawnGoStraightDia(events, 16, 16, 16000,-30);
-            SpawnGoStraightDia(events, 16, 19, 17000,-30);
-            
-            SpawnGoStraightDia(events, -16, 16, 20000,30);
-            SpawnGoStraightDia(events, -16, 19, 21000,30);
+            SpawnGoStraightAndStopCube(events, 0, 20, 1000);
+            SpawnGoStraightAndStopCube(events, 6, 20, 3000);
+            SpawnGoStraightAndStopCube(events, -6, 20, 5000);
+
+            SpawnCurveRightCube(events, 16, 16, 7000, -45);
+            SpawnCurveLeftCube(events, -16, 16, 9000, 45);
+
+            SpawnGoStraightDia(events, 0, 20, 11000);
+            SpawnGoStraightDia(events, 6, 20, 14000);
+            SpawnGoStraightDia(events, -6, 20, 17000);
+
+            SpawnGoStraightDia(events, 16, 16, 21000, -30);
+            SpawnGoStraightDia(events, 16, 19, 24000, -30);
+
+            SpawnGoStraightDia(events, -16, 16, 27000, 30);
+            SpawnGoStraightDia(events, -16, 19, 30000, 30);
+
+            SpawnVerticalLineAndCurve(events, 0, 20, 33000);
+            SpawnVerticalLineAndCurve(events, 3, 16, 37000);
+            SpawnVerticalLineAndCurve(events, -3, 16, 41000);
         }
 
         private void SpawnRow(
@@ -157,6 +161,105 @@ namespace Components.levels
                     baseY + 6f,
                     rotationZ
                 );
+            });
+        }
+
+        private void SpawnVerticalLineAndCurve(
+            Dictionary<long, Action<LevelPlayer>> events,
+            float baseX,
+            float baseY,
+            long baseMilliSecond,
+            float rotationZ = 0
+        )
+        {
+            events.Add(baseMilliSecond, it =>
+            {
+                it.SpawnEnemy(
+                    curveLeftEnemy,
+                    baseX + 3f,
+                    baseY,
+                    rotationZ);
+
+                it.SpawnEnemy(
+                    curveRightEnemy,
+                    baseX - 3f,
+                    baseY,
+                    rotationZ);
+            });
+
+            events.Add(baseMilliSecond + 500, it =>
+            {
+                it.SpawnEnemy(
+                    curveLeftEnemy,
+                    baseX + 3f,
+                    baseY,
+                    rotationZ);
+
+                it.SpawnEnemy(
+                    curveRightEnemy,
+                    baseX - 3f,
+                    baseY,
+                    rotationZ);
+            });
+
+            events.Add(baseMilliSecond + 1000, it =>
+            {
+                it.SpawnEnemy(
+                    curveLeftEnemy,
+                    baseX + 3f,
+                    baseY,
+                    rotationZ);
+
+                it.SpawnEnemy(
+                    curveRightEnemy,
+                    baseX - 3f,
+                    baseY,
+                    rotationZ);
+            });
+
+            events.Add(baseMilliSecond + 1500, it =>
+            {
+                it.SpawnEnemy(
+                    curveLeftEnemy,
+                    baseX + 3f,
+                    baseY,
+                    rotationZ);
+
+                it.SpawnEnemy(
+                    curveRightEnemy,
+                    baseX - 3f,
+                    baseY,
+                    rotationZ);
+            });
+
+            events.Add(baseMilliSecond + 2000, it =>
+            {
+                it.SpawnEnemy(
+                    curveLeftEnemy,
+                    baseX + 3f,
+                    baseY,
+                    rotationZ);
+
+                it.SpawnEnemy(
+                    curveRightEnemy,
+                    baseX - 3f,
+                    baseY,
+                    rotationZ);
+            });
+
+            events.Add(baseMilliSecond + 2500, it =>
+            {
+                it.SpawnEnemy(
+                    curveLeftEnemy,
+                    baseX + 3f,
+                    baseY,
+                    rotationZ);
+
+                it.SpawnEnemy(
+                    curveRightEnemy,
+                    baseX - 3f,
+                    baseY,
+                    rotationZ);
             });
         }
     }
