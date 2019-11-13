@@ -1576,7 +1576,7 @@ PrefabInstance:
     - target: {fileID: 1650968739551477838, guid: 1d012c9a44104488a9873e4fb31e9dd5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1650968739551477837, guid: 1d012c9a44104488a9873e4fb31e9dd5,
         type: 3}
@@ -1853,7 +1853,7 @@ PrefabInstance:
     - target: {fileID: 1650968739551477838, guid: 1d012c9a44104488a9873e4fb31e9dd5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1650968739551477837, guid: 1d012c9a44104488a9873e4fb31e9dd5,
         type: 3}
@@ -2157,5 +2157,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 987909274154513368, guid: e96ca7adcf722484db53b3e6a8b24fda, type: 3}
-  shotRangeMs: 100
+  shotRangeMs: 66
   speed: 70

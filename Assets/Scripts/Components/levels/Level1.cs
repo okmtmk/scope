@@ -13,61 +13,52 @@ namespace Components.levels
             /*
              * 1パート目
              */
+            const int firstPart = 0;
 
-//            _repository.SpawnGoStraightAndStopCube(events, 0, 20, 1000);
-//            _repository.SpawnGoStraightAndStopCube(events, 7.5f, 16, 3000);
-//            _repository.SpawnGoStraightAndStopCube(events, -7.5f, 16, 5000);
-//
-//            _repository.SpawnGoStraightAndStopCube(events, 16, 16, 7000, -30);
-//            _repository.SpawnGoStraightAndStopCube(events, 7.5f, 15, 9000, -45);
-//
-//            _repository.SpawnGoStraightAndStopCube(events, -16, 16, 11000, 30);
-//            _repository.SpawnGoStraightAndStopCube(events, -7.5f, 15, 13000, 45);
-//
-//            _repository.SpawnGoStraightAndStopCube(events, 7.5f, 16, 15000);
-//            _repository.SpawnGoStraightAndStopCube(events, -16, 16, 16000, 30);
-//
-//            _repository.SpawnGoStraightAndStopCube(events, -7.5f, 16, 19000);
-//            _repository.SpawnGoStraightAndStopCube(events, 16, 16, 20000, -30);
-//            
-//            _repository.SpawnGoStraightAndStopCube(events, -7.5f, 16, 23000);
-//            _repository.SpawnGoStraightAndStopCube(events, 0f, 16, 25000);
-//            _repository.SpawnGoStraightAndStopCube(events, 7.5f, 16, 27000);
-//            
-//            _repository.SpawnGoStraightAndStopCube(events, 7.5f, 16, 30000);
-//            _repository.SpawnGoStraightAndStopCube(events, 0f, 16, 32000);
-//            _repository.SpawnGoStraightAndStopCube(events, -7.5f, 16, 34000);
+            _repository.SpawnCurveRightCube(events, 16, 16, firstPart + 1000, -45);
+            _repository.SpawnCurveLeftCube(events, -16, 16, firstPart + 2000, 45);
+
+            _repository.SpawnCurveRightCube(events, 18f, 14, firstPart + 5000, -45);
+            _repository.SpawnCurveLeftCube(events, -18f, 14, firstPart + 7000, 45);
+
+            _repository.SpawnCurveRightCube(events, 16, 16, firstPart + 10000, -45);
+            _repository.SpawnCurveRightCube(events, 3, 16, firstPart + 12000, -15);
+
+            _repository.SpawnCurveLeftCube(events, -16, 16, firstPart + 15000, 45);
+            _repository.SpawnCurveLeftCube(events, -3, 16, firstPart + 17000, 15);
+
+            _repository.SpawnVerticalLineAndCross(events, 0, 20, firstPart + 20000);
+            _repository.SpawnVerticalLineAndCross(events, 16, 16, firstPart + 24000, -30);
+            _repository.SpawnVerticalLineAndCross(events, -16, 16, firstPart + 28000, 30);
+
 
             /*
              * 2パート目
              */
-            const int secondBase = 0; //38000;
+            const int secondPart = 33000;
+            _repository.SpawnGoStraightAndStopCube(events, 0, 20, secondPart + 1000);
+            _repository.SpawnGoStraightAndStopCube(events, 7.5f, 16, secondPart + 3000);
+            _repository.SpawnGoStraightAndStopCube(events, -7.5f, 16, secondPart + 5000);
 
-            _repository.SpawnCurveRightCube(events, 16, 16, secondBase + 1000, -45);
-            _repository.SpawnCurveLeftCube(events, -16, 16, secondBase + 2000, 45);
+            _repository.SpawnGoStraightAndStopCube(events, 16, 16, secondPart + 7000, -30);
+            _repository.SpawnGoStraightAndStopCube(events, 7.5f, 15, secondPart + 9000, -45);
 
-            _repository.SpawnCurveRightCube(events, 18f, 14, secondBase + 5000, -45);
-            _repository.SpawnCurveLeftCube(events, -18f, 14, secondBase + 7000, 45);
+            _repository.SpawnGoStraightAndStopCube(events, -16, 16, secondPart + 11000, 30);
+            _repository.SpawnGoStraightAndStopCube(events, -7.5f, 15, secondPart + 13000, 45);
 
-            _repository.SpawnCurveRightCube(events, 16, 16, secondBase + 10000, -45);
-            _repository.SpawnCurveRightCube(events, 3, 16, secondBase + 12000, -15);
+            _repository.SpawnGoStraightAndStopCube(events, 7.5f, 16, secondPart + 15000);
+            _repository.SpawnGoStraightAndStopCube(events, -16, 16, secondPart + 16000, 30);
 
-            _repository.SpawnCurveLeftCube(events, -16, 16, secondBase + 15000, 45);
-            _repository.SpawnCurveLeftCube(events, -3, 16, secondBase + 17000, 15);
-            
-            _repository.SpawnVerticalLineAndCross(events, 0, 20, secondBase + 20000);
-            _repository.SpawnVerticalLineAndCross(events, 16, 16, secondBase + 24000, -30);
-            _repository.SpawnVerticalLineAndCross(events, -16, 16, secondBase + 28000, 30);
-//
-//            _repository.SpawnGoStraightDia(events, 0, 20, 11000);
-//            _repository.SpawnGoStraightDia(events, 6, 20, 14000);
-//            _repository.SpawnGoStraightDia(events, -6, 20, 17000);
-//
-//            _repository.SpawnGoStraightDia(events, 16, 16, 21000, -30);
-//            _repository.SpawnGoStraightDia(events, 16, 19, 24000, -30);
-//
-//            _repository.SpawnGoStraightDia(events, -16, 16, 27000, 30);
-//            _repository.SpawnGoStraightDia(events, -16, 19, 30000, 30);
+            _repository.SpawnGoStraightAndStopCube(events, -7.5f, 16, secondPart + 19000);
+            _repository.SpawnGoStraightAndStopCube(events, 16, 16, secondPart + 20000, -30);
+
+            _repository.SpawnGoStraightAndStopCube(events, -7.5f, 16, secondPart + 23000);
+            _repository.SpawnGoStraightAndStopCube(events, 0f, 16, secondPart + 25000);
+            _repository.SpawnGoStraightAndStopCube(events, 7.5f, 16, secondPart + 27000);
+
+            _repository.SpawnGoStraightAndStopCube(events, 7.5f, 16, secondPart + 30000);
+            _repository.SpawnGoStraightAndStopCube(events, 0f, 16, secondPart + 32000);
+            _repository.SpawnGoStraightAndStopCube(events, -7.5f, 16, secondPart + 34000);
         }
     }
 }
