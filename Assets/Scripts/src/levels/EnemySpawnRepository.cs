@@ -44,7 +44,8 @@ namespace src.levels
             float baseX,
             float baseY,
             long baseMilliSecond,
-            float rotationZ = 0)
+            float rotationZ = 0
+        )
         {
             SpawnRow(spawnEvent, _goStraightAndStopEnemy, baseX, baseY, baseMilliSecond, rotationZ);
             SpawnRow(spawnEvent, _goStraightAndStopEnemy, baseX, baseY + 1.5f, baseMilliSecond + 100, rotationZ);
