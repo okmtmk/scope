@@ -60,16 +60,15 @@ namespace Components.effects
             _stopwatch.Reset();
             _stopwatch.Start();
 
-            _animation.enabled = true;
-            _animation.clip.wrapMode = WrapMode.Loop;
+            _animation.wrapMode = WrapMode.Loop;
             _animation.Play();
         }
 
         private void OnNonDamaged()
         {
             Debug.Log("ダメージが消えた");
-            _animation.Stop();
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+            _animation.wrapMode = WrapMode.Once;
+//            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
 
             _stopwatch.Stop();
             _stopwatch.Reset();
