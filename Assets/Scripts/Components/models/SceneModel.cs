@@ -39,7 +39,14 @@ namespace Components.models
 
         private void Start()
         {
-            levelPlayer.PlayLevel();
+        }
+
+        private void Update()
+        {
+            if (SceneState == SceneState.Wait && Input.GetMouseButtonDown(0))
+            {
+                SceneState = SceneState.Shooting;
+            }
         }
 
         private void OnStateWait()

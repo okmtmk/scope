@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 166854989}
   - component: {fileID: 166854992}
   - component: {fileID: 166854991}
+  - component: {fileID: 166854993}
   m_Layer: 0
   m_Name: LevelPlayer
   m_TagString: Untagged
@@ -459,6 +460,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 166854991}
+--- !u!114 &166854993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166854988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b35706f5b9462398b58b22e9c28ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelPlayer: {fileID: 166854992}
 --- !u!1 &170975583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,17 +1292,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1044111439}
-        m_MethodName: OnEnterCollider
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   onColliderExit:
     m_PersistentCalls:
       m_Calls:
@@ -1781,6 +1784,7 @@ GameObject:
   - component: {fileID: 1472401471}
   - component: {fileID: 1472401473}
   - component: {fileID: 1472401472}
+  - component: {fileID: 1472401474}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1870,6 +1874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52fa592211849679fe4b6fac519b55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effect: {fileID: 1044111439}
+  sceneModel: {fileID: 166854993}
 --- !u!114 &1472401471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1994,6 +2000,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playRangeMilliSecond: 80
+--- !u!114 &1472401474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472401465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b113457dc59648f098f2d95e6d8ce178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  error: {r: 0.95686275, g: 0.2627451, b: 0.21176471, a: 1}
+  normal: {r: 0, g: 0, b: 0, a: 1}
+  rotator: {fileID: 1838991919}
+  stateSprites:
+  - {fileID: 140554052}
+  - {fileID: 1190846071}
 --- !u!1 &1617469120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,8 +2372,6 @@ MonoBehaviour:
   normal: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
   rotator: {fileID: 1838991919}
   stateSprites:
-  - {fileID: 140554052}
-  - {fileID: 1190846071}
   - {fileID: 256642785}
   - {fileID: 170975586}
 --- !u!82 &1838991921
@@ -2460,6 +2482,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerDamagedParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2520,26 +2562,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c35a6192428e7440b86648a233b6b190, type: 2}
-    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96613f70d2a0345fba8a31069e37fb4f, type: 3}
 --- !u!1 &2099094015
