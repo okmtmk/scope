@@ -10,7 +10,7 @@ namespace Components.effects
     {
         [SerializeField] private ParticleSystem particle;
 
-        private void OnDestroy()
+        public void PlayEffect()
         {
             var obj = Instantiate(particle);
             obj.transform.position = gameObject.transform.position;
