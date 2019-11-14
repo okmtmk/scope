@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1650968739551477839}
   - component: {fileID: 1650968739551477834}
   - component: {fileID: 1650968739551477835}
+  - component: {fileID: 1000149884437283095}
   m_Layer: 0
   m_Name: GoStraightAndStop
   m_TagString: Enemy
@@ -147,3 +148,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c580c7684b784671a84fa2dc70e92b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1000149884437283095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650968739551477838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165aec67aeb64b90b0fd305a145c1f00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 6390135974654390272, guid: 3dad836e725cb4e2bbb3452e67275364,
+    type: 3}
