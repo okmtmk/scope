@@ -208,6 +208,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyDestroyParticle
       objectReference: {fileID: 0}
+    - target: {fileID: 9100194593559269775, guid: 3dad836e725cb4e2bbb3452e67275364,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4788292080217238753, guid: 3dad836e725cb4e2bbb3452e67275364,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1161,6 +1166,7 @@ GameObject:
   - component: {fileID: 1044111438}
   - component: {fileID: 1044111437}
   - component: {fileID: 1044111440}
+  - component: {fileID: 1044111439}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1231,6 +1237,20 @@ Transform:
   m_Father: {fileID: 1472401469}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1044111439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044111436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5981d4af0634e7293b40ca89eb2ad5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagedParticle: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
+    type: 3}
 --- !u!114 &1044111440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,6 +1268,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1472401470}
         m_MethodName: OnSpriteCollisionEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1044111439}
+        m_MethodName: OnEnterCollider
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1302,7 +1333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1134954292
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1360,7 +1391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134954291}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.14, y: 6.49, z: -28.460938}
+  m_LocalPosition: {x: -28.79, y: 7.8, z: -28.460938}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2400,6 +2431,100 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &2085443305
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 117439160068236523, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerDamagedParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -27.479752
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.6466765
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -25.41516
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236516, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236540, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c35a6192428e7440b86648a233b6b190, type: 2}
+    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117439160068236543, guid: 96613f70d2a0345fba8a31069e37fb4f,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 96613f70d2a0345fba8a31069e37fb4f, type: 3}
 --- !u!1 &2099094015
 GameObject:
   m_ObjectHideFlags: 0
