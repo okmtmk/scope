@@ -68,7 +68,6 @@ namespace Components.effects
         {
             Debug.Log("ダメージが消えた");
             _animation.wrapMode = WrapMode.Once;
-//            gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
 
             _stopwatch.Stop();
             _stopwatch.Reset();
