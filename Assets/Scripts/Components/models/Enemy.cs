@@ -3,6 +3,7 @@ using System.Collections;
 using System.Diagnostics;
 using Components.effects;
 using Components.simpleColliders;
+using Components.utilities;
 using UnityEngine;
 
 namespace Components.models
@@ -29,6 +30,7 @@ namespace Components.models
         {
             if (other.gameObject.CompareTag("Bullet"))
             {
+                ScoreViewer.Score += 10;
                 effect.PlayEffect();
                 Destroy(gameObject);
             }

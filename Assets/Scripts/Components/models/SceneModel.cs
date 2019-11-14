@@ -1,14 +1,18 @@
 using System;
+using System.Diagnostics;
 using Components.levels;
 using src.scenes;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Components.models
 {
     public class SceneModel : MonoBehaviour
     {
         [SerializeField] public LevelPlayer levelPlayer;
+
         [NonSerialized] private SceneState _sceneState = SceneState.Wait;
+        [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
 
         public SceneState SceneState
         {
@@ -39,13 +43,15 @@ namespace Components.models
 
         private void Start()
         {
+            _stopwatch.Start();
         }
 
         private void Update()
         {
-            if (SceneState == SceneState.Wait && Input.GetMouseButtonDown(0))
+            if (SceneState == SceneState.Wait && _stopwatch.ElapsedMilliseconds > 1000)
             {
                 SceneState = SceneState.Shooting;
+                _stopwatch.Stop();
             }
         }
 
