@@ -17,6 +17,11 @@ namespace Components.levels
         [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
         [NonSerialized] private readonly List<long> _spawned = new List<long>();
 
+        private void Start()
+        {
+            level.Register(_spawnEvents);
+        }
+
         private void Update()
         {
             foreach (var it in _spawnEvents.Where(it =>
@@ -38,8 +43,12 @@ namespace Components.levels
 
         public void PlayLevel()
         {
-            level.Register(_spawnEvents);
             _stopwatch.Start();
+        }
+
+        public void StopLevel()
+        {
+            _stopwatch.Stop();
         }
     }
 }

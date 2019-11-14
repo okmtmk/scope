@@ -1,4 +1,5 @@
 using System;
+using Components.levels;
 using src.scenes;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Components.models
 {
     public class SceneModel : MonoBehaviour
     {
-        [SerializeField] public int playerHitPoint = 2;
+        [SerializeField] public LevelPlayer levelPlayer;
         [NonSerialized] private SceneState _sceneState = SceneState.Wait;
 
         public SceneState SceneState
@@ -25,15 +26,20 @@ namespace Components.models
                     case SceneState.Shooting:
                         OnStateShooting();
                         break;
-                    
+
                     case SceneState.GameOver:
                         OnStateGameOver();
                         break;
-                    
+
                     default:
                         throw new ArgumentOutOfRangeException(nameof(value), value, null);
                 }
             }
+        }
+
+        private void Start()
+        {
+            levelPlayer.PlayLevel();
         }
 
         private void OnStateWait()
@@ -42,10 +48,12 @@ namespace Components.models
 
         private void OnStateShooting()
         {
+            levelPlayer.PlayLevel();
         }
 
         private void OnStateGameOver()
         {
+            levelPlayer.StopLevel();
         }
     }
 }
