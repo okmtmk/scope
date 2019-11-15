@@ -9,10 +9,14 @@ namespace Components.models
 {
     public class SceneModel : MonoBehaviour
     {
+        [SerializeField] private long gameStartDelay = 1500;
         [SerializeField] public LevelPlayer levelPlayer;
+        [SerializeField] private Animator canvasAnimator;
 
         [NonSerialized] private SceneState _sceneState = SceneState.Wait;
         [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
+
+        private static readonly int GameOver = Animator.StringToHash("GameOver");
 
         public SceneState SceneState
         {
@@ -48,10 +52,15 @@ namespace Components.models
 
         private void Update()
         {
-            if (SceneState == SceneState.Wait && _stopwatch.ElapsedMilliseconds > 1000)
+            if (SceneState == SceneState.Wait && _stopwatch.ElapsedMilliseconds > gameStartDelay)
             {
                 SceneState = SceneState.Shooting;
                 _stopwatch.Stop();
+            }
+
+            if (SceneState == SceneState.GameOver && Input.GetMouseButtonDown(0))
+            {
+                // todo タイトルにもどる
             }
         }
 
@@ -67,6 +76,7 @@ namespace Components.models
         private void OnStateGameOver()
         {
             levelPlayer.StopLevel();
+            canvasAnimator.SetTrigger(GameOver);
         }
     }
 }
