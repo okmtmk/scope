@@ -1,4 +1,5 @@
 using System;
+using Components.levels;
 using Components.models;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
@@ -8,9 +9,11 @@ namespace Components.utilities
 {
     public class ScoreViewer : MonoBehaviour
     {
+        [SerializeField] private ScoreCounter counter;
         [SerializeField] private Text scoreView;
-        [NonSerialized] private long _beforeFrameScore = 0;
-        [NonSerialized] public static long Score = 0;
+        [NonSerialized] private long _beforeFrameScore;
+
+        private long Score => counter.Score;
 
         private void Start()
         {

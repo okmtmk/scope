@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using Components.effects;
+using Components.levels;
 using Components.simpleColliders;
 using Components.utilities;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Components.models
 {
     public class Enemy : MonoBehaviour
     {
+        [SerializeField] public ScoreCounter counter;
         [SerializeField] private DestroyParticleEmmiter effect;
         [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
 
@@ -30,7 +32,9 @@ namespace Components.models
         {
             if (other.gameObject.CompareTag("Bullet"))
             {
-                ScoreViewer.Score += 10;
+                counter.Score += 10;
+                counter.DestroyedEnemies++;
+
                 effect.PlayEffect();
                 Destroy(gameObject);
             }

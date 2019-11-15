@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Components.levels;
 using Components.simpleColliders;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -11,6 +12,7 @@ namespace Components.models
         [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
         [NonSerialized] public float RotationZ;
         [SerializeField] public int speed;
+        [SerializeField] public ScoreCounter counter;
 
         private float X
         {
@@ -31,12 +33,14 @@ namespace Components.models
         private void Start()
         {
             gameObject.transform.rotation = Quaternion.Euler(0f, 0f, RotationZ);
+            counter.ShotBullets++;
+
             _stopwatch.Start();
         }
 
         private void Update()
         {
-            Move(RadianZ);
+            Move();
 
             _stopwatch.Restart();
         }
@@ -45,7 +49,7 @@ namespace Components.models
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("敵にダメージを与えた！");
+                counter.HitBullets++;
                 Destroy(gameObject);
             }
         }
@@ -55,10 +59,10 @@ namespace Components.models
             Destroy(gameObject);
         }
 
-        private void Move(double radian)
+        private void Move()
         {
-            X += (float) Math.Cos(radian) * speed * ElapsedSecond;
-            Y += (float) Math.Sin(radian) * speed * ElapsedSecond;
+            X += (float) Math.Cos(RadianZ) * speed * ElapsedSecond;
+            Y += (float) Math.Sin(RadianZ) * speed * ElapsedSecond;
         }
     }
 }

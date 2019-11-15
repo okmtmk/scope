@@ -10,6 +10,7 @@ namespace Components.levels
     public class LevelPlayer : MonoBehaviour
     {
         [SerializeField] private Level level;
+        [SerializeField] private ScoreCounter counter;
 
         [NonSerialized] private readonly Dictionary<long, Action<LevelPlayer>> _spawnEvents
             = new Dictionary<long, Action<LevelPlayer>>();
@@ -37,6 +38,9 @@ namespace Components.levels
             var obj = Instantiate(enemy);
             obj.transform.position = new Vector3(x, y, -1);
             obj.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+            obj.counter = counter;
+
+            counter.SpawnedEnemies++;
 
             return obj;
         }

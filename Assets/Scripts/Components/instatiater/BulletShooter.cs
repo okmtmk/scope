@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Components.levels;
 using Components.models;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Components.instatiater
         [SerializeField] private Bullet bullet;
         [SerializeField] private long shotRangeMs;
         [SerializeField] private int speed;
+        [SerializeField] private ScoreCounter counter;
 
         private float X => gameObject.transform.position.x;
         private float Y => gameObject.transform.position.y;
@@ -43,6 +45,7 @@ namespace Components.instatiater
             shotBullet.transform.position = new Vector3(X, Y, 1);
             shotBullet.speed = speed;
             shotBullet.RotationZ = RotationZ;
+            shotBullet.counter = counter;
         }
     }
 }
