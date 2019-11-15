@@ -4,6 +4,7 @@ namespace src.scenes
     {
         Wait,
         Shooting,
-        GameOver
+        GameOver,
+        Result
     }
 }

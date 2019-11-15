@@ -39,6 +39,9 @@ namespace Components.models
                         OnStateGameOver();
                         break;
 
+                    case SceneState.Result:
+                        OnStateResult();
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(value), value, null);
                 }
@@ -77,6 +80,10 @@ namespace Components.models
         {
             levelPlayer.StopLevel();
             canvasAnimator.SetTrigger(GameOver);
+        }
+
+        private void OnStateResult()
+        {
         }
     }
 }
