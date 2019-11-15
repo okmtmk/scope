@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using Components.levels;
+using Components.utilities;
 using src.scenes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ namespace Components.models
         [SerializeField] private long gameStartDelay = 1500;
         [SerializeField] public LevelPlayer levelPlayer;
         [SerializeField] private Animator canvasAnimator;
+        [SerializeField] private ResultViewer result;
 
         [NonSerialized] private SceneState _sceneState = SceneState.Wait;
         [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
@@ -84,6 +86,7 @@ namespace Components.models
 
         private void OnStateResult()
         {
+            result.ShowResult();
         }
     }
 }
