@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Components.models;
 using src.levels;
+using src.scenes;
 using UnityEngine;
 
 namespace Components.levels
@@ -59,6 +60,8 @@ namespace Components.levels
             _repository.SpawnGoStraightAndStopCube(events, 7.5f, 16, secondPart + 30000);
             _repository.SpawnGoStraightAndStopCube(events, 0f, 16, secondPart + 32000);
             _repository.SpawnGoStraightAndStopCube(events, -7.5f, 16, secondPart + 34000);
+
+            events.Add(secondPart + 40000, it => { it.SetState(SceneState.Result); });
         }
     }
 }

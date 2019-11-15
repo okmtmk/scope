@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Components.models;
+using src.scenes;
 using UnityEngine;
 
 namespace Components.levels
@@ -11,6 +12,7 @@ namespace Components.levels
     {
         [SerializeField] private Level level;
         [SerializeField] private ScoreCounter counter;
+        [SerializeField] private SceneModel sceneModel;
 
         [NonSerialized] private readonly Dictionary<long, Action<LevelPlayer>> _spawnEvents
             = new Dictionary<long, Action<LevelPlayer>>();
@@ -53,6 +55,11 @@ namespace Components.levels
         public void StopLevel()
         {
             _stopwatch.Stop();
+        }
+
+        public void SetState(SceneState state)
+        {
+            sceneModel.SceneState = state;
         }
     }
 }

@@ -393,6 +393,8 @@ GameObject:
   - component: {fileID: 166854992}
   - component: {fileID: 166854991}
   - component: {fileID: 166854993}
+  - component: {fileID: 166854994}
+  - component: {fileID: 166854995}
   m_Layer: 0
   m_Name: LevelPlayer
   m_TagString: Untagged
@@ -460,6 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 166854991}
+  counter: {fileID: 166854994}
 --- !u!114 &166854993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +478,32 @@ MonoBehaviour:
   gameStartDelay: 1500
   levelPlayer: {fileID: 166854992}
   canvasAnimator: {fileID: 1010669706}
+--- !u!114 &166854994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166854988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ca2d5599454e4fa7427ed210b72901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &166854995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166854988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca30fc67b4114a51bbe8d225de5ef52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  counter: {fileID: 166854994}
+  viewer: {fileID: 909088519}
 --- !u!1 &170975583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1070,83 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &909088517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 909088518}
+  - component: {fileID: 909088520}
+  - component: {fileID: 909088519}
+  m_Layer: 5
+  m_Name: CounterView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &909088518
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909088517}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1010669703}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -1720, y: 0}
+  m_SizeDelta: {x: 400, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &909088519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909088517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.12941177, g: 0.12941177, b: 0.12941177, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &909088520
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909088517}
+  m_CullTransparentMesh: 0
 --- !u!1 &993716447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,6 +1350,7 @@ RectTransform:
   - {fileID: 585884913}
   - {fileID: 1304507637}
   - {fileID: 417229164}
+  - {fileID: 909088518}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1801,6 +1908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc19cf56ea7f4961a301f219baa35be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  counter: {fileID: 166854994}
   scoreView: {fileID: 1271500880}
 --- !u!1 &1304507636
 GameObject:
@@ -2762,3 +2870,4 @@ MonoBehaviour:
   bullet: {fileID: 987909274154513368, guid: e96ca7adcf722484db53b3e6a8b24fda, type: 3}
   shotRangeMs: 66
   speed: 70
+  counter: {fileID: 166854994}
