@@ -5,11 +5,13 @@ namespace Components.rotations
 {
     public class MouseInputRotator : MonoBehaviour
     {
-        [NonSerialized] private const float RotationLimit = 45;
+        [SerializeField] private int rotateSpeed = 1;
+        [SerializeField] private float rotationLimit = 45;
+        [SerializeField] private CursorLockMode cursorLockMode = CursorLockMode.Locked;
 
         [NonSerialized] private float _mouseBasePositionX;
         [NonSerialized] public float InnerRotationZ;
-        [SerializeField] private int rotateSpeed = 1;
+
 
         protected float RotationZ
         {
@@ -27,17 +29,17 @@ namespace Components.rotations
             {
                 if (IsInRange) return InnerRotationZ;
 
-                if (InnerRotationZ > RotationLimit) return RotationLimit;
+                if (InnerRotationZ > rotationLimit) return rotationLimit;
 
-                return -RotationLimit;
+                return -rotationLimit;
             }
         }
 
-        public bool IsInRange => InnerRotationZ <= RotationLimit && InnerRotationZ >= -RotationLimit;
+        public bool IsInRange => InnerRotationZ <= rotationLimit && InnerRotationZ >= -rotationLimit;
 
         protected virtual void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = cursorLockMode;
         }
 
         protected virtual void Update()
