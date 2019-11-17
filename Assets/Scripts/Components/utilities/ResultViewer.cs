@@ -9,17 +9,11 @@ namespace Components.utilities
     {
         [SerializeField] private Text resultText;
         [SerializeField] private ScoreCounter counter;
-
-        [NonSerialized] private new Animation _animation;
-
-        private void Start()
-        {
-            _animation = GetComponent<Animation>();
-        }
+        [SerializeField] private SceneLoader loader;
 
         public void ShowResult()
         {
-            _animation.Play();
+            loader.isChangeable = true;
             resultText.text
                 = $"スコア\t{counter.Score}\n" +
                   $"倒した数\t{counter.DestroyedEnemies}/{counter.SpawnedEnemies}" +

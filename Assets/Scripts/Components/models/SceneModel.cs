@@ -19,6 +19,7 @@ namespace Components.models
         [NonSerialized] private readonly Stopwatch _stopwatch = new Stopwatch();
 
         private static readonly int GameOver = Animator.StringToHash("GameOver");
+        private static readonly int OnResult = Animator.StringToHash("OnResult");
 
         public SceneState SceneState
         {
@@ -86,6 +87,7 @@ namespace Components.models
 
         private void OnStateResult()
         {
+            canvasAnimator.SetTrigger(OnResult);
             result.ShowResult();
         }
     }
