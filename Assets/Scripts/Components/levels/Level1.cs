@@ -61,7 +61,7 @@ namespace Components.levels
             _repository.SpawnGoStraightAndStopCube(events, 0f, 16, secondPart + 32000);
             _repository.SpawnGoStraightAndStopCube(events, -7.5f, 16, secondPart + 34000);
 
-            events.Add(secondPart + 40000, it => { it.SetState(SceneState.Result); });
+            events.Add(secondPart + 37000, it => { it.SetState(SceneState.Result); });
         }
     }
 }
